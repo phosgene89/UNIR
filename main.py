@@ -22,7 +22,7 @@ torch.backends.cudnn.benchmark = True
 
 ex = Experiment('unsup')
 time_str = datetime.now().strftime("%a-%b-%d-%H%M%S")
-exp_dir = time_str
+exp_dir = "experiments\\" + time_str
 os.makedirs(exp_dir)
 
 
@@ -43,7 +43,7 @@ def config():
     nepochs = 800
     exp_dir = exp_dir
     debug = False
-    use_mongo = True
+    use_mongo = False
     if use_mongo and not debug:
         ex.observers.append(external.get_mongo_obs())
     else:

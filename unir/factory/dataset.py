@@ -2,18 +2,18 @@ import logging
 
 from torch.utils.data import DataLoader
 
-from unsup_it.dataset.celebA import CelebALoader
-from unsup_it.dataset.lsun import LSUNLoader
-from unsup_it.dataset.recipe import RecipeLoader
-from unsup_it.module.corruption import *
+from unir.dataset.celebA import CelebALoader
+from unir.dataset.lsun import LSUNLoader
+from unir.dataset.recipe import RecipeLoader
+from unir.module.corruption import *
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 dataset_default = {
     'common': {
-        'batch_size': 16,
-        'num_workers': 8,
+        'batch_size': 4,
+        'num_workers': 0,
     },
     'celebA': {
         'filename': '...',

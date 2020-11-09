@@ -3,8 +3,8 @@ import math
 
 import torch
 
-import unsup_it.utils.helpers as helpers
-from unsup_it.module.SAGAN import ResNetGenerator, ResNetDiscriminator
+import unir.utils.helpers as helpers
+from unir.module.SAGAN import ResNetGenerator, ResNetDiscriminator
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

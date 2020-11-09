@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 torch.backends.cudnn.benchmark = True
 
 ex = Experiment('unsup')
-time_str = datetime.now().strftime("%a-%b-%d-%H:%M:%S")
-exp_dir = os.path.join("...", ex.path, time_str)
+time_str = datetime.now().strftime("%a-%b-%d-%H%M%S")
+exp_dir = time_str
 os.makedirs(exp_dir)
 
 

@@ -37,10 +37,10 @@ def get_image(image_path, input_height, input_width, resize_height=64, resize_wi
 
 
 class CelebALoader(Dataset):
-    def __init__(self, filename: str, is_train: bool = True, measurement=None):
+    def __init__(self, filename: str, is_train: bool=True, measurement=None):
         # Get the data file names
         
-        self.data_dir = "C:/Users/Greg/Desktop/data/CelebA/img_align_celeba/img_align_celeba"
+        self.data_dir = filename
 
         if is_train:
             self.datafiles = glob.glob(self.data_dir + '/?[0-7]*.jpg')

@@ -1,6 +1,6 @@
 # Unsupervised Adversarial Image Reconstruction
 
-Anonymous code for https://openreview.net/forum?id=BJg4Z3RqF7
+Unofficial code for https://openreview.net/forum?id=BJg4Z3RqF7 adapted from the original repo.
 
 ### Getting Started
 1. Install packages with ```pip install -r requirements```.

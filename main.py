@@ -137,3 +137,8 @@ def main(_run, nepochs, niter, device, _config, create_datasets, create_modules,
                     'state_dict': mods['gen'].state_dict(),
                     'best_MSE': best_mse,
                 }, is_best)
+                
+        # Save models
+        torch.save(mods['gen'].state_dict(), "latest_gen.pth")
+        torch.save(mods['dis'].state_dict(), "latest_dis.pth")
+        print("Models saved")

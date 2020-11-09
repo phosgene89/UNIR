@@ -22,7 +22,7 @@ torch.backends.cudnn.benchmark = True
 
 ex = Experiment('unsup')
 time_str = datetime.now().strftime("%a-%b-%d-%H%M%S")
-exp_dir = "experiments\\" + time_str
+exp_dir = "experiments/" + time_str
 os.makedirs(exp_dir)
 
 

@@ -16,7 +16,7 @@ dataset_default = {
         'num_workers': 0,
     },
     'celebA': {
-        'filename': "C:/Users/Greg/Desktop/data/CelebA/img_align_celeba/img_align_celeba",
+        'filename': "/home/greg/Desktop/data/img_align_celeba",
         'nc': 3,
         'im_size': 64,
     },

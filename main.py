@@ -20,6 +20,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 torch.backends.cudnn.benchmark = True
 
+import warnings
+warnings.filterwarnings("ignore")
+
 ex = Experiment('unsup')
 time_str = datetime.now().strftime("%a-%b-%d-%H%M%S")
 exp_dir = "experiments/" + time_str

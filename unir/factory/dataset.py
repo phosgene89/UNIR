@@ -12,11 +12,11 @@ logger = logging.getLogger(__name__)
 
 dataset_default = {
     'common': {
-        'batch_size': 4,
+        'batch_size': 16,
         'num_workers': 0,
     },
     'celebA': {
-        'filename': "/home/greg/Desktop/data/img_align_celeba",
+        'filename': "/data/theGregSpace/data/img_align_celeba",
         'nc': 3,
         'im_size': 64,
     },

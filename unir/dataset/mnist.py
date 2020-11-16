@@ -47,7 +47,7 @@ class MNISTLoader(Dataset):
         else:
             self.data = torch.load("{}/test.pt".format(self.data_dir))
 
-        self.total = len(self.datafiles)
+        self.total = len(self.data)
         # Set the pointer to initial location
         # Options for reading the files
         self.input_height = 28
@@ -63,7 +63,7 @@ class MNISTLoader(Dataset):
 
     def __getitem__(self, index):
 
-        batch_file = self.datafiles[index]
+        batch_file = self.data[index]
         padded_channels = torch.zeros((28, 28))
         batch_file = torch.stack((batch_file, padded_channels, padded_channels), axis=2)
         x_real = get_image(batch_file,

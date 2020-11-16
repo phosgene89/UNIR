@@ -65,7 +65,7 @@ class MNISTLoader(Dataset):
     def __getitem__(self, index):
 
         batch_file = self.data[index]
-        x_real = torch.zeros(28, 28, 3)
+        x_real = torch.zeros(64, 64, 3)
         x_real[:28, :28, 0] = batch_file
 
         x_real = torch.tensor(x_real, dtype=torch.float).permute(2, 0, 1)

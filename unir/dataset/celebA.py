@@ -64,6 +64,7 @@ class CelebALoader(Dataset):
     def __getitem__(self, index):
 
         batch_file = self.datafiles[index]
+        print("SIZE 1: {}".format(batch_file.shape))
         x_real = get_image(batch_file,
                            input_height=self.input_height,
                            input_width=self.input_width,
@@ -72,6 +73,7 @@ class CelebALoader(Dataset):
                            is_crop=self.is_crop, angle=self.angle)
 
         x_real = torch.tensor(x_real, dtype=torch.float).permute(2, 0, 1)
+        print("SIZE 2: {}".format(x_real.shape))
         x_measurement = x_real.unsqueeze(0)
 
         meas = self.measurement.measure(x_measurement, device='cpu', seed=index)

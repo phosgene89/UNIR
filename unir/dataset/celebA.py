@@ -64,7 +64,6 @@ class CelebALoader(Dataset):
     def __getitem__(self, index):
 
         batch_file = self.datafiles[index]
-        print("SIZE 1: {}".format(batch_file.shape))
         x_real = get_image(batch_file,
                            input_height=self.input_height,
                            input_width=self.input_width,

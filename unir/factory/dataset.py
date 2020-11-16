@@ -93,8 +93,8 @@ def dataset(ex):
     @ex.config
     def config():
         dataset = {
-            'name': 'celebA'
-            #'name': 'MNIST'
+            #'name': 'celebA'
+            'name': 'MNIST'
         }
 
         dataset.update(dataset_default['common'])

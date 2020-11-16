@@ -60,18 +60,13 @@ class MNISTLoader(Dataset):
             self.angle = 90
         else:
             self.angle = 0
+            
 
     def __getitem__(self, index):
 
         batch_file = self.data[index]
-        padded_channels = torch.zeros((28, 28))
-        batch_file = torch.stack((batch_file, padded_channels, padded_channels), axis=2)
-        x_real = get_image(batch_file,
-                           input_height=self.input_height,
-                           input_width=self.input_width,
-                           resize_height=self.output_height,
-                           resize_width=self.output_width,
-                           is_crop=self.is_crop, angle=self.angle)
+        x_real = torch.zeros(28, 28, 3)
+        x_real[:28, :28, 0] = batch_file
 
         x_real = torch.tensor(x_real, dtype=torch.float).permute(2, 0, 1)
         x_measurement = x_real.unsqueeze(0)

@@ -69,6 +69,7 @@ class MNISTLoader(Dataset):
         x_real[:28, :28, 0] = batch_file
 
         x_real = torch.tensor(x_real, dtype=torch.float).permute(2, 0, 1)
+        print("LOOK HERE", x_real.shape)
         x_measurement = x_real.unsqueeze(0)
 
         meas = self.measurement.measure(x_measurement, device='cpu', seed=index)

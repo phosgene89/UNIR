@@ -10,6 +10,7 @@
 .idea/**/shelf
 **/experiments
 **/*.zip
+**/*.pth
 
 # Sensitive or high-churn files
 .idea/**/dataSources/

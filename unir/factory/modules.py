@@ -122,12 +122,14 @@ def UnsupIR(ex):
         dis, optim_dis = create_discriminator(device=device, nc=nc * closure_mult)
         
         try:
-            gen.load_state_dict(torch.load("latest_gen.pth"))
+            #gen.load_state_dict(torch.load("latest_gen.pth"))
+            pass
         except:
             print("Couldnt load pretrained generator")
             
         try:
-            dis.load_state_dict(torch.load("latest_dis.pth"))
+            #dis.load_state_dict(torch.load("latest_dis.pth"))
+            pass
         except:
             print("Couldnt load pretrained discriminator")
 

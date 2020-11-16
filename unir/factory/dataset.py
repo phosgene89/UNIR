@@ -5,6 +5,7 @@ from torch.utils.data import DataLoader
 from unir.dataset.celebA import CelebALoader
 from unir.dataset.lsun import LSUNLoader
 from unir.dataset.recipe import RecipeLoader
+from unir.dataset.mnist import MNISTLoader
 from unir.module.corruption import *
 
 logging.basicConfig(level=logging.INFO)
@@ -30,12 +31,18 @@ dataset_default = {
         'nc': 3,
         'im_size': 64,
     },
+    'MNIST': {
+        'filename': "/data/theGregSpace/data/MNIST",
+        'nc': 3,
+        'im_size': 64,
+    },
 }
 
 dataset_funcs = {
     'celebA': CelebALoader,
     'LSUN': LSUNLoader,
     'recipe': RecipeLoader,
+    'MNIST': MNISTLoader,
 }
 
 corruption_config = {
@@ -86,7 +93,8 @@ def dataset(ex):
     @ex.config
     def config():
         dataset = {
-            'name': 'celebA'
+            #'name': 'celebA'
+            'name': 'MNIST'
         }
 
         dataset.update(dataset_default['common'])

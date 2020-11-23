@@ -17,9 +17,9 @@ class MNISTLoader(Dataset):
     def __init__(self, filename: str, is_train: bool = True, measurement=None):
         # Get the data file names
         if is_train:
-            self.data = torch.load("{}/training.pt".format(self.data_dir))
+            self.data = np.load("{}/training.npy".format(self.data_dir))
         else:
-            self.data = torch.load("{}/test.pt".format(self.data_dir))
+            self.data = np.load("{}/test.npy".format(self.data_dir))
 
         self.total = len(self.datafiles)
         print("USING MNIST")

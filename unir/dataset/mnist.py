@@ -1,75 +1,40 @@
+from __future__ import print_function
+
 import glob
 
-import imageio
-import numpy as np
-import torch
-from skimage.transform import resize, rotate
+import torchvision.transforms as transforms
+from PIL import Image
 from torch.utils.data.dataset import Dataset
 
 
-def imread(path):
-    return imageio.imread(path).astype(np.float)
-
-
-def center_crop(x, crop_h, crop_w, resize_h=64, resize_w=64):
-    if crop_w is None:
-        crop_w = crop_h
-    h, w = x.shape[:2]
-    j = int(round((h - crop_h) / 2.))
-    i = int(round((w - crop_w) / 2.))
-    return resize(x[j:j + crop_h, i:i + crop_w], [resize_h, resize_w], mode='constant', anti_aliasing=True)
-
-
-def transform(image, input_height, input_width, resize_height=64, resize_width=64, angle=90, is_crop=True):
-    if is_crop:
-        cropped_image = center_crop(image, input_height, input_width,
-                                    resize_height, resize_width)
-    else:
-        cropped_image = resize(
-            image, [resize_height, resize_width], mode='constant', anti_aliasing=True)
-    cropped_image = rotate(cropped_image, angle)
-    return np.array(cropped_image)
-
-
-def get_image(image_path, input_height, input_width, resize_height=64, resize_width=64, angle=90, is_crop=True):
-    image = imread(image_path)
-    return transform(image, input_height, input_width, resize_height, resize_width, angle, is_crop)
+def pil_loader(path):
+    with open(path, 'rb') as f:
+        img = Image.open(f)
+        return img.convert('RGB')
 
 
 class MNISTLoader(Dataset):
-    def __init__(self, filename: str, is_train: bool=True, measurement=None):
+    def __init__(self, filename: str, is_train: bool = True, measurement=None):
         # Get the data file names
-        
-        self.data_dir = filename
-
         if is_train:
             self.data = torch.load("{}/training.pt".format(self.data_dir))
         else:
             self.data = torch.load("{}/test.pt".format(self.data_dir))
 
-        self.total = len(self.data)
-        # Set the pointer to initial location
-        # Options for reading the files
-        self.input_height = 28
-        self.input_width = 28
+        self.total = len(self.datafiles)
         self.output_height = 64
         self.output_width = 64
-        self.is_crop = True
         self.measurement = measurement
-        if not rotate:
-            self.angle = 90
-        else:
-            self.angle = 0
-            
+        self.transforms = transforms.Compose([
+            transforms.Resize([self.output_height, self.output_width], 2),
+            transforms.ToTensor(),
+            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+        ])
 
     def __getitem__(self, index):
 
-        batch_file = self.data[index]
-        x_real = torch.zeros(64, 64, 3)
-        x_real[:28, :28, 0] = batch_file
-
-        x_real = torch.tensor(x_real, dtype=torch.float).permute(2, 0, 1)
-        print("LOOK HERE", x_real.shape)
+        x_real = self.datafiles[index]
+        x_real = self.transforms(x_real)
         x_measurement = x_real.unsqueeze(0)
 
         meas = self.measurement.measure(x_measurement, device='cpu', seed=index)

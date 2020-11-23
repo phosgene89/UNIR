@@ -22,6 +22,7 @@ class MNISTLoader(Dataset):
             self.data = torch.load("{}/test.pt".format(self.data_dir))
 
         self.total = len(self.datafiles)
+        print("USING MNIST")
         self.output_height = 64
         self.output_width = 64
         self.measurement = measurement

@@ -72,7 +72,6 @@ class CelebALoader(Dataset):
                            is_crop=self.is_crop, angle=self.angle)
 
         x_real = torch.tensor(x_real, dtype=torch.float).permute(2, 0, 1)
-        print("SIZE 2: {}".format(x_real.shape))
         x_measurement = x_real.unsqueeze(0)
 
         meas = self.measurement.measure(x_measurement, device='cpu', seed=index)

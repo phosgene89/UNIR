@@ -6,6 +6,8 @@ import torchvision.transforms as transforms
 from PIL import Image
 from torch.utils.data.dataset import Dataset
 
+import numpy as np
+
 
 def pil_loader(path):
     with open(path, 'rb') as f:
